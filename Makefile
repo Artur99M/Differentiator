@@ -44,11 +44,10 @@ run : $(ALLOBJFILES)
 	$(CC) $(ALLOBJFILES) -o Diff.out
 
 dot:
-	dot graphviz/Tree -O
-	dot graphviz/Tree3 -O
+	dot graphviz/* -O
 
 deb:
 	$(CC) $(D) $(ALLCPPFILES)
 
 clean :
-	rm *.out obj/*.o
+	rm *.out obj/*.o graphviz/*

@@ -8,13 +8,11 @@
 #include "../header/Diff.h"
 #include "../header/SimpleTreeExp.h"
 #include "../header/graphviz.h"
-#include <unistd.h>
 #include <stdlib.h>
 
 int main()
 {
 
-    PRINT_DEBUG ("bark\n");
     text txt = read ("data/file.txt");
     PRINT_DEBUG ("txt.nimlines = %lu\n", txt.numlines);
     Node* x = GetG(txt.line[0].str);
@@ -22,18 +20,15 @@ int main()
     TreePrint (x);
     Graphviz (x, "graphviz/Tree");
     txtDtor (&txt);
-    // TEX_PRINT (x);
-    // Graphviz (x, "graphviz/Tree.dot");
+
     Node* diff = Diff (x);
-    // usleep (50000);
-    // TreeFPrint (diff, "a.txt");
-    // Graphviz (diff, "graphviz/Tree");
-    // Graphviz (diff, "graphviz/Tree2");
+    Graphviz (diff, "graphviz/Tree2");
     SimplTree (diff);
     Graphviz (diff, "graphviz/Tree3");
-    // TreePrint (diff);
+    FILE* TeX_file = fopen ("TeX/TeX.tex", "w");
+    fprintf (TeX_file, "В конечном итоге результате:\n");
     TEX_PRINT (diff);
-    // SimplTree(x);
 
-
+    fclose (TeX_file);
+    TreeDtor (diff);
 }

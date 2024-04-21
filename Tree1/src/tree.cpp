@@ -58,12 +58,10 @@ void TreeDtor (Node* Tree)
     if (Tree->right != nullptr)
         TreeDtor (Tree->right);
 
-    free (Tree->left);
-    free (Tree->right);
-
     Tree->value.number = 0;
     Tree->left  = nullptr;
     Tree->right = nullptr;
+    free (Tree);
 
     return;
 }

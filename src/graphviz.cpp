@@ -11,6 +11,13 @@ void Graphviz (Node* pNode, char* file)
         return;
 
     fprintf (outfile, "digraph\n{\n");
+    fprintf (outfile, "\t\"%p\n", pNode);
+    if (pNode->type == NUMBER)
+        fprintf (outfile, "%lf\"", pNode->value.number);
+    else if (pNode->type == VARIABLE)
+        fprintf (outfile, "%c\"", pNode->value.variable);
+    else if (pNode->type == OPERATION)
+        fprintf (outfile, "%s\"", OPERATIONS[pNode->value.operation - 1].name);
     if (pNode)
         CreateGraph(pNode, outfile);
     fprintf (outfile, "}\n");

@@ -1,8 +1,10 @@
 #include "../header/SimpleTreeExp.h"
 #include "../Tree1/header/tree.h"
 #include "../DEBUG/def.h"
+#include "../header/graphviz.h"
 #include <stdio.h>
 #include <math.h>
+int i = 4;
 
 void SimpleChange (Node* pNode, char value);
 const double Eps = 1e-9;
@@ -187,6 +189,12 @@ void SimplTree(Node* pNode)
     if (pNode == nullptr)
         return;
 
+    #ifdef DEBUG
+    char s[32] = "";
+    sprintf (s, "graphviz/Tree%d", i++);
+    Graphviz (pNode, s);
+    #endif
+
     while (true)
         if (SimplConst(pNode) && Simpl01(pNode))
             break;
@@ -231,7 +239,7 @@ void ChangeToNum (Node* pNode, double num)
 PRINT_DEBUG ("ChangeToNum >>> finish: pNode = %p, pNode->value = \"%lg\", pNode->type = %d, pNode->left = %p, pNode->right = %p\n", pNode, pNode->value.number, pNode->type, pNode->left, pNode->right);
 }
 
-bool Simpl01 (Node* pNode)
+bool  Simpl01 (Node* pNode)
 {
     if (pNode == nullptr)
         return true;
@@ -296,3 +304,24 @@ bool Simpl01 (Node* pNode)
     return answer;
 }
 
+// bool SimpleRow (Node* pNode)
+// {
+//     if (pNode == nullptr)
+//         return false;
+//
+//     bool answer = SimpleRow (pNode->left) && SimpleRow (pNode->right);
+//
+//     if (pNode->type == OPERATION)
+//     {
+//         switch (pNode->type)
+//         {
+//             case ADD:
+//             {
+//                 if (pNode.)
+//             }
+//
+//         }
+//     }
+//
+//     return answer;
+// }

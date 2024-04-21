@@ -22,81 +22,89 @@
 #define _COS(x) CreateNodeOperation (COS, x, nullptr)
 #define _LN(x) CreateNodeOperation ( LOG, CreateNodeNumber(exp, nullptr, nullptr), x)
 
-FILE* out = fopen ("TeX/TeX.tex", "w");
-
-const char* start_str[] = {"Нам нужно разобраться с этим:\n", "Теперь разберемся с этим\n","Рассмотрим это выражение\n",
-"После очевидных преобразований получаем это\n", "Кажется, что с этим уравнением мы не справимся\n",
-"Сделаем несколько преобразований и получим это\n"};
-const int nstrs = 5;
-unsigned int qw = 0;
 
 Node* Diff (const Node* pNode)
 {
-    // fprintf (out, "%s", start_str[qw - (qw/nstrs)*nstrs]);
-    // qw++;
-    // TEX_PRINT (pNode);
     if (pNode == nullptr)
         return nullptr;
+    TeX_Diff_Print_Start (pNode);
+
+    Node* val = nullptr;
 
     switch (pNode->type)
     {
         case NUMBER:
-            return CreateNodeNumber (0, nullptr, nullptr);
+            val = CNN (0);
+            break;
         case VARIABLE:
-            return CreateNodeNumber (1, nullptr, nullptr);
+            val = CNN (1);
+            break;
         case OPERATION:
             switch (pNode->value.operation)
             {
                 case ADD:
-                    return _ADD (_D(pNode->left), _D(pNode->right));
+                    val = _ADD (_D(pNode->left), _D(pNode->right));
+                    break;
                     // return CreateNode (OPERATION, ADD, Diff(pNode->left), Diff (pNode->right));
                 case SUB:
-                    return _SUB (_D(pNode->left), _D(pNode->right));
+                    val = _SUB (_D(pNode->left), _D(pNode->right));
+                    break;
                     // return CreateNode (OPERATION, SUB, Diff(pNode->left), Diff (pNode->right));
                 case MUL:
-                    return       _ADD (_MUL (_D(pNode->left), _C(pNode->right)), _MUL (_C(pNode->left), _D(pNode->right)));
+                    val = _ADD (_MUL (_D(pNode->left), _C(pNode->right)), _MUL (_C(pNode->left), _D(pNode->right)));
+                    break;
                 case DIV:
-                    return _DIV (_SUB (_MUL (_D(pNode->left), _C(pNode->right)), _MUL (_C(pNode->left), _D(pNode->right))),
-                    _EXP(_C(pNode->right), CreateNodeNumber (2, nullptr, nullptr)));
+                    val = _DIV (_SUB (_MUL (_D(pNode->left), _C(pNode->right)), _MUL (_C(pNode->left), _D(pNode->right))),
+                    _EXP(_C(pNode->right), CNN(2)));
+                    break;
 
                 case SIN:
-                    return _MUL (_COS (_C(pNode->left)), _D(pNode->left));
+                    val = _MUL (_COS (_C(pNode->left)), _D(pNode->left));
+                    break;
                 case COS:
-                    return _MUL (_SIN (_C(pNode->left)), _D(pNode->left));
+                    val = _MUL (_SIN (_C(pNode->left)), _D(pNode->left));
+                    break;
                 case EXP:
                     if (pNode->left->type != NUMBER && pNode->right->type == NUMBER)
-                        return _MUL(_MUL (_C(pNode->right), _EXP(_C(pNode->left), _SUB(_C(pNode->right),
-                        CreateNodeNumber (1, nullptr, nullptr)))), _D(pNode->left));
-                    if (pNode->left->type == NUMBER && pNode->right->type != NUMBER)
-                        return _MUL (_MUL (_LN (_C(pNode->left)), _C(pNode)), _D(pNode->right));
-                    if (pNode->left->type != NUMBER && pNode->right->type != NUMBER)
-                        _MUL (_EXP (CNN(exp), _MUL (_C(pNode->left), _LN(pNode->right))), _D (_MUL (_C(pNode->left), _LN(pNode->right))));
+                        val = _MUL(_MUL (_C(pNode->right), _EXP(_C(pNode->left), _SUB(_C(pNode->right),
+                        CNN (1)))), _D(pNode->left));
+                    else if (pNode->left->type == NUMBER && pNode->right->type != NUMBER)
+                        val = _MUL (_MUL (_LN (_C(pNode->left)), _C(pNode)), _D(pNode->right));
+                    else if (pNode->left->type != NUMBER && pNode->right->type != NUMBER)
+                        val = _MUL (_EXP (CNN(exp), _MUL (_C(pNode->left), _LN(pNode->right))), _D (_MUL (_C(pNode->left), _LN(pNode->right))));
+                    break;
                 case LOG:
                     if (pNode->left->type == NUMBER && pNode->right->type != NUMBER)
-                        return _MUL (_DIV(CreateNodeNumber(1, nullptr, nullptr), _MUL(_C(pNode->right), _LN(_C(pNode->left)))),
-                        _D(pNode->right));
-                    if (pNode->left->type != NUMBER && pNode->right->type == NUMBER)
-                        return _D(_DIV (CreateNodeNumber(1, nullptr, nullptr),
-                                        CreateNodeOperation(LOG, _C(pNode->right), _C(pNode->left))));
-                    if (pNode->left->type != NUMBER && pNode->right->type != NUMBER)
-                        return _D (_DIV ( _LN (pNode->left), _LN (pNode->right)));
+                        val = _MUL (_DIV(CNN (1), _MUL(_C(pNode->right), _LN(_C(pNode->left)))), _D(pNode->right));
+                    else if (pNode->left->type != NUMBER && pNode->right->type == NUMBER)
+                        val = _D(_DIV (CNN (1), CreateNodeOperation(LOG, _C(pNode->right), _C(pNode->left))));
+                    else if (pNode->left->type != NUMBER && pNode->right->type != NUMBER)
+                        val = _D (_DIV ( _LN (pNode->left), _LN (pNode->right)));
+                    break;
                 case ARCSIN:
-                    return _MUL (_DIV (CNN(1), _EXP (_ADD (CNN(1), _EXP(_C(pNode->left),
+                    val = _MUL (_DIV (CNN(1), _EXP (_ADD (CNN(1), _EXP(_C(pNode->left),
                     CNN(2))), CNN(0.5f))), _D(pNode->left));
+                    break;
                 case ARCCOS:
-                    return _MUL (_SUB (CNN(0), _DIV (CNN(1), _EXP (_ADD (CNN(1), _EXP(_C(pNode->left),
+                    val = _MUL (_SUB (CNN(0), _DIV (CNN(1), _EXP (_ADD (CNN(1), _EXP(_C(pNode->left),
                     CNN(2))), CNN(0.5f)))), _D(pNode->left));
+                    break;
                 case ARCTG:
-                    return _MUL(_DIV(CNN(1), _ADD(CNN(1), _EXP(_C(pNode->left), CNN(2)))), _D(pNode->left));
+                    val = _MUL(_DIV(CNN(1), _ADD(CNN(1), _EXP(_C(pNode->left), CNN(2)))), _D(pNode->left));
+                    break;
                 case ARCCTG:
-                    return _MUL(_SUB (CNN(0), _DIV(CNN(1), _ADD(CNN(1), _EXP(_C(pNode->left), CNN(2))))), _D(pNode->left));
+                    val = _MUL(_SUB (CNN(0), _DIV(CNN(1), _ADD(CNN(1), _EXP(_C(pNode->left), CNN(2))))), _D(pNode->left));
+                    break;
                 case TG:
-                    return _MUL (_DIV (CNN(1), _EXP (_COS (_C(pNode->left)), CNN(2))), _D(pNode->left));
+                    val = _MUL (_DIV (CNN(1), _EXP (_COS (_C(pNode->left)), CNN(2))), _D(pNode->left));
+                    break;
                 case CTG:
-                    return _MUL (_DIV (CNN(1), _EXP (_SIN (_C(pNode->left)), CNN(2))), _D(pNode->left));
+                    val = _MUL (_DIV (CNN(1), _EXP (_SIN (_C(pNode->left)), CNN(2))), _D(pNode->left));
 
 
             }
     }
-    return nullptr;
+
+    if (val != nullptr) TeX_Diff_Print_Finish (val);
+    return val;
 }
