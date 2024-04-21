@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.9.12)  21 APR 2024 13:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.9.12)  21 APR 2024 13:14
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -804,8 +804,7 @@ Package xcolor Info: Model `wave' substituted by `hsb' on input line 1376.
 File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count327
 \l__pdf_internal_box=\box114
-)
-No file main.aux.
+) (./main.aux)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
@@ -833,7 +832,7 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: listings package is loaded.
 Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
-(/usr/local/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+ (/usr/local/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count328
 \scratchdimen=\dimen292
@@ -916,6 +915,17 @@ Overfull \hbox (15.20546pt too wide) detected at line 22
 [] [] \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 1\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 000000\OML/cmm/m/it/14.4 x \OMS/cmsy/m/n/14.4 ^^A [] [] \OT1/cmr/m/n/14.4 + [] [] \OMS/cmsy/m/n/14.4 ^^A [] [] ^^A \OT1/cmr/m/n/14.4 1\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 000000 [] [] [] \OMS/cmsy/m/n/14.4 ^^A \OT1/cmr/m/n/14.4 1\OML/cmm/m/it/14.4 :\OT1/cmr/m/n/14.4 000000\OML/cmm/m/it/14.4 x \OMS/cmsy/m/n/14.4 ^^A [] [] \OT1/cmr/m/n/14.4 +
  []
 
+./TeX.tex:24: Missing \right. inserted.
+<inserted text> 
+                \right .
+l.24 ...ft(x 1.000000x\cdot\cos\left(\right)^{x}\]
+                                                  
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
 [1
 
 {/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t2a.enc}]
@@ -978,8 +988,8 @@ Package rerunfilecheck Info: Checksums for `main.out':
 (rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 18083 strings out of 476025
- 291018 string characters out of 5790017
+ 18085 strings out of 476025
+ 291036 string characters out of 5790017
  1858388 words of memory out of 5000000
  38263 multiletter control sequences out of 15000+600000
  516566 words of font info for 46 fonts, out of 8000000 for 9000

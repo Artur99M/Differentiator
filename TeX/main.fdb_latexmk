@@ -1,11 +1,11 @@
 # Fdb version 4
-["makeindex main.idx"] 1713694188 "main.idx" "main.ind" "main" 1713694264 0
-  "main.idx" 1713694263 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+["makeindex main.idx"] 1713694490 "main.idx" "main.ind" "main" 1713694492 0
+  "main.idx" 1713694491 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   (generated)
   "main.ilg"
   "main.ind"
   (rewritten before read)
-["pdflatex"] 1713694263 "/Users/arturminnahmetov/Desktop/Proga/Differentiator/TeX/main.tex" "main.pdf" "main" 1713694264 2
+["pdflatex"] 1713694491 "/Users/arturminnahmetov/Desktop/Proga/Differentiator/TeX/main.tex" "main.pdf" "main" 1713694492 2
   "/Users/arturminnahmetov/Desktop/Proga/Differentiator/TeX/main.tex" 1713185820 124 03d05b87116bc6419a4ddae8f78d73e1 ""
   "/Users/arturminnahmetov/Library/texlive/2023/texmf-var/fonts/tfm/lh/lh-t2a/larm1440.tfm" 1694534982 3256 3daaa33cf35cf3f354983aa3214ecd7f ""
   "/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t2a.enc" 1136849721 3141 82d5616418ed8d5de703b3951bedecb4 ""
@@ -135,12 +135,12 @@
   "/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1694513283 4623355 b8cad38412faebe1ce5b780a45db67bd ""
   "/usr/local/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1694513279 7883454 184ff381e42c0177c24927c890509b02 ""
   "/usr/local/texlive/2023/texmf.cnf" 1678822455 577 1b2b1af17af2508fb20dd85783af4050 ""
-  "TeX.tex" 1713694262 3555 d0628c2f1de0df5b6098a3b0fc837ec1 ""
-  "main.aux" 1713694264 711 f80e9510a693de6e3d8cf33b57ef8c1e "pdflatex"
+  "TeX.tex" 1713694490 3545 0dc96e6b439a9b28b030f60229ae5112 ""
+  "main.aux" 1713694492 711 f80e9510a693de6e3d8cf33b57ef8c1e "pdflatex"
   "main.ind" 0 -1 0 "makeindex main.idx"
-  "main.out" 1713694263 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "main.out" 1713694492 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   "main.tex" 1713185820 124 03d05b87116bc6419a4ddae8f78d73e1 ""
-  "matlab.aux" 1713694264 886 36c93a391cabb94e79450aa9cb7b2854 "pdflatex"
+  "matlab.aux" 1713694492 886 36c93a391cabb94e79450aa9cb7b2854 "pdflatex"
   "matlab.tex" 0 -1 0 ""
   "settings.tex" 1713185820 3274 3b88206a643a6f105ea2d5b7262daef4 ""
   (generated)
